@@ -1,9 +1,1 @@
-<div>
-  <h1>Hallo</h1>
-  <a href="webcal://mycalender.dallau.com/api/calender/subscribe/2">Add to calender</a>
-  <ul>
-    <li *ngFor="let event of events">
-      {{event.SUMMARY}} {{printDate(event.DTSTART)}}
-    </li>
-  </ul>
-</div>
+<router-outlet></router-outlet>

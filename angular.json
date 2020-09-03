@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "mycalenderFrontend"
+    }
+  },
+  "defaultProject": "mycalenderFrontend",
+  "cli": {
+    "analytics": "472453f5-3a34-40dd-a726-55b00be4fc5e"
+  }
 }

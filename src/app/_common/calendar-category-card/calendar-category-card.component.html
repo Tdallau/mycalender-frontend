@@ -1,0 +1,10 @@
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title">{{title}}</h5>
+    <ul>
+      <li *ngFor="let calender of calenders">
+        <a [href]="getUrl(calender.id)">{{calender.name}}</a>
+      </li>
+    </ul>
+  </div>
+</div>

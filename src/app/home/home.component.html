@@ -1,1 +1,18 @@
-<p>home works!</p>
+<div class="container-fluid mt-3">
+  <div class="card">
+    <div class="card-body">
+      Welkom bij Mijn kalenders hier kan je je abboneren op verschilende soorten kalenders,
+      van voetbal wedstrijden to school roosters. Niet kunnen vinden wat je zocht?
+      Log in en creëer een eigen kalender!
+    </div>
+  </div>
+  <div class="card mt-3">
+    <div class="card-body">
+      <h5 class="card-title">Kalenders</h5>
+      <ul class="list-group">
+        <!-- <li class="list-group-item" *ngFor="let calender of calenders">{{calender.name}}</li> -->
+        <a class="list-group-item list-group-item-action" *ngFor="let calender of calenders" [href]="getUrl(calender.id)">{{calender.name}}</a>
+      </ul>
+    </div>
+  </div>
+</div>

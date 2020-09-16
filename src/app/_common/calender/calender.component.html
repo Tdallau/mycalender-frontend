@@ -1,0 +1,10 @@
+<div class="container">
+  <div class="taskbar">
+    <h2 class="title">{{month}}({{year}})</h2>
+  </div>
+  <div class="row">
+    <div class="custom-col" *ngFor="let day of createArray(numberOfDays); let indexOfelement = index;">
+      <app-calender-day [day]="indexOfelement + 1" ></app-calender-day>
+    </div>
+  </div>
+</div>

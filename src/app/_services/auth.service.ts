@@ -14,9 +14,9 @@ import LocalStorageHelper from '../_helpers/LocalStorageHelper';
   providedIn: 'root'
 })
 export class AuthService {
-  private baseUrl = 'http://localhost:8000/authorization/';
+  private baseUrl = 'https://mycalender.dallau.com/authorization/';
   // private baseUrl = 'http://0.0.0.0:8080/';
-  private token: TokenSettings;
+  private token: TokenSettings | null = null;
   public $tokenObservable = new BehaviorSubject<TokenSettings>(this.token);
 
   constructor(private http: HttpClient, private router: Router, private loadingService: LoadingService) {
@@ -83,7 +83,7 @@ export class AuthService {
         localStorage.removeItem('token');
         this.$tokenObservable.next(this.token);
         setTimeout(_ => {
-          this.router.navigate(['login']);
+          this.router.navigate(['/']);
         }, 500);
       });
     }

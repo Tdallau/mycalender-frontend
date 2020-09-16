@@ -20,9 +20,9 @@ export class CustomHttpInterceptor implements HttpInterceptor {
     request: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    // console.log(request.url);
+    console.log(request.url);
     if (
-      request.url.includes("authorization")
+      request.url.includes("authorization") || request.url.endsWith('calender', request.url.length - 1)
     ) {
       return this.handleIntercept(null, request, next, 1);
     }

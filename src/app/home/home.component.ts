@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../_services/auth.service';
 import LoginRequest from '../_models/Authorization/loginRequest';
+import { Calender } from '../_models/calender';
+import { CalenderService } from '../_services/calender.service';
+import { MainService } from '../_services/main.service';
 
 @Component({
   selector: 'app-home',
@@ -8,13 +11,17 @@ import LoginRequest from '../_models/Authorization/loginRequest';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-
-  constructor(private authService: AuthService) { }
+  calenders: Array<Calender> = [];
+  constructor(private calenderService: CalenderService, private mainService: MainService) { }
 
   ngOnInit(): void {
-    // this.authService.login(new LoginRequest('tim@dallau.com', 'test123')).subscribe(res => {
-    //   console.log(res);
-    // })
+    this.calenderService.getAllCalenders().subscribe((calenders) => {
+      this.calenders = calenders;
+    })
+  }
+
+  getUrl(id: number) {
+    return this.mainService.sanitize(`webcal://mycalender.dallau.com/api/calender/subscribe/${id}`);
   }
 
 }

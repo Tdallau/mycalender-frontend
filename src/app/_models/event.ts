@@ -2,7 +2,8 @@ export interface Event {
   SUMMARY: string;
   DTSTAMP: string;
   DTSTART: string;
-  DESCRIPTION: string;
+  DTEND: string;
+  DESCRIPTION?: string;
   LOCATION: string;
-  DURATION: string;
+  DURATION?: string;
 }

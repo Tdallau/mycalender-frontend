@@ -1,3 +1,11 @@
-<div class="day">
-  {{day}}
+<div class="day" (click)="isCurrentMonth ? openEditModel() : doNothing()" [ngStyle]="{'background-color':isCurrentMonth ? 'white' : 'gray' }">
+  {{date.date()}}
+  <div *ngIf="event !== undefined">
+    <div class="event">
+      {{event.SUMMARY}}
+    </div>
+    <div class="event">
+      {{calenderService.getPeriod(event)}}
+    </div>
+  </div>
 </div>

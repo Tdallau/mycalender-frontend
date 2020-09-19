@@ -1,11 +1,32 @@
-
+.custom-container {
+  background-color: lightgray;
+  padding: 0px;
+} 
 
 .taskbar {
-  background-color: green;
+  margin-left: 0.6rem;
+  margin-right: 0.6rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.navigateCalender:hover {
+  cursor: pointer;
+  color: blueviolet;
+}
+
+.calender {
+  margin-left: 1rem;
+  margin-right: 1rem;
 }
 
 .custom-col {
   width: calc(100% / 7 - (14px));
   margin-left: 7px;
   margin-right: 7px;
+}
+
+.weekDay {
+  text-align: center;
 }

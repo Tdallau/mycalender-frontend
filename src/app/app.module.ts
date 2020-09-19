@@ -16,6 +16,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CalendersComponent } from './calenders/calenders.component';
 import { CalenderComponent } from './_common/calender/calender.component';
 import { CalenderDayComponent } from './_common/calender-day/calender-day.component';
+import { EventEditModalComponent } from './_modals/event-edit-modal/event-edit-modal.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { CalenderDayComponent } from './_common/calender-day/calender-day.compon
     CalendersComponent,
     CalenderComponent,
     CalenderDayComponent,
+    EventEditModalComponent,
   ],
   imports: [
     BrowserModule,

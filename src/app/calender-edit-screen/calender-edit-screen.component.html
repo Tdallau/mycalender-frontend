@@ -1,0 +1,9 @@
+<div *ngIf="events.length > 0">
+  <app-calender [events]="events" (eventsChanged)="eventsChanged($event)">
+  </app-calender>
+</div>
+
+<div>
+  <button class="btn btn-success" (click)="saveCalender()">Save</button>
+</div>
+<button (click)="goBack()">Back</button>

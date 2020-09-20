@@ -12,7 +12,14 @@
     </div>
     <div class="row">
       <div class="custom-col" *ngFor="let day of daysCurrentMonth">
-        <app-calender-day [date]="clanederService.getMomentDate(day.date, day.month, day.year)" [event]="getEvent(day)" [isCurrentMonth]="day.isCurrentMonth" ></app-calender-day>
+        <app-calender-day 
+          [date]="clanederService.getMomentDate(day.date, day.month, day.year)" 
+          [event]="getEvent(day)" 
+          [isCurrentMonth]="day.isCurrentMonth"
+          [addEvent]="addEvent"
+          [updateEvent]="updateEvent"
+          [removeEvent]="deleteEvent">
+        </app-calender-day>
       </div>
     </div>
   </div>

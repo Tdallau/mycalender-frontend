@@ -29,7 +29,11 @@ export class CalenderDayComponent implements OnInit {
     this.bsModalRef = this.modalService.show(EventEditModalComponent, {
       initialState: {
         event: this.event,
-        date: this.date
+        date: this.date,
+        isNewEvent: this.event === undefined,
+        addEvent: this.addEvent,
+        removeEvent: this.removeEvent,
+        updateEvent: this.updateEvent,
       }
     });
   }

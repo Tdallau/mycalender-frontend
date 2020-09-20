@@ -6,4 +6,5 @@ export interface Event {
   DESCRIPTION?: string;
   LOCATION: string;
   DURATION?: string;
+  UID: string;
 }

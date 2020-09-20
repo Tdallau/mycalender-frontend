@@ -92,7 +92,7 @@ export class CalenderService {
   }
 
   getMomentDate(day: number, month: number, year: number) : moment.Moment {
-    return moment(`${year}-${this.addLeadingZero(month)}-${this.addLeadingZero(day)}T${moment().hour() - ((-new Date().getTimezoneOffset()) / 60)}:00:00.000Z`);
+    return moment(`${year}-${this.addLeadingZero(month)}-${this.addLeadingZero(day)}T${this.addLeadingZero(moment().hour() - ((-new Date().getTimezoneOffset()) / 60))}:00:00.000Z`);
   }
 
   getTime(date: moment.Moment, time: Time) {
@@ -167,7 +167,28 @@ export class CalenderService {
     )
   }
 
+  getMyCalenders(): Observable<Array<Calender>> {
+    return this.http.get<ResponseItem<Array<Calender>>>(`${this.baseUrl}my`).pipe(
+      map(result => {
+        if(result.success) {
+          return result.data
+        }
+        return [];
+      })
+    )
+  }
+
   getCalenderEvents(id: number): Observable<Array<Event>> {
     return this.http.get<Array<Event>>(`${this.baseUrl}data/${id}`);
+  }
+
+  createCalender(events: Array<Event>, name: string, fileName: string): Observable<{id: number, name: string, fileName: string}> {
+    return this.http.post<{id: number, name: string, fileName: string}>(`${this.baseUrl}json`, {
+      events: events.map<Event>(x => ({
+        ...x,
+      })),
+      name,
+      fileName
+    })
   }
 }

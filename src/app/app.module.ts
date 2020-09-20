@@ -17,6 +17,7 @@ import { CalendersComponent } from './calenders/calenders.component';
 import { CalenderComponent } from './_common/calender/calender.component';
 import { CalenderDayComponent } from './_common/calender-day/calender-day.component';
 import { EventEditModalComponent } from './_modals/event-edit-modal/event-edit-modal.component';
+import { CalenderEditScreenComponent } from './calender-edit-screen/calender-edit-screen.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { EventEditModalComponent } from './_modals/event-edit-modal/event-edit-m
     CalenderComponent,
     CalenderDayComponent,
     EventEditModalComponent,
+    CalenderEditScreenComponent,
   ],
   imports: [
     BrowserModule,

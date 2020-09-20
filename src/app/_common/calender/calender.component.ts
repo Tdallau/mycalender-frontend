@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { CalenderService } from 'src/app/_services/calender.service';
 import { Event } from '../../_models/event';
 import * as moment from 'moment-timezone';
@@ -10,12 +10,14 @@ import { Day } from 'src/app/_models/authorization/day';
   styleUrls: ['./calender.component.scss'],
 })
 export class CalenderComponent implements OnInit {
+  @Input() events: Array<Event> = [];
+  @Output() eventsChanged = new EventEmitter<Array<Event>>();
+
   today: Date = new Date();
   daysCurrentMonth: Array<Day>;
   month: string;
   monthIndex: number;
   year: number;
-  events: Array<Event> = [];
   eventsThisMonth: Array<Event> = [];
 
   constructor(public clanederService: CalenderService) {}
@@ -29,17 +31,14 @@ export class CalenderComponent implements OnInit {
     this.month = this.clanederService.monthNames[today.getMonth()];
     this.monthIndex = today.getMonth();
     this.year = today.getFullYear();
-    this.clanederService.getCalenderEvents(8).subscribe(events => {
-      this.events = events;
-      const eventCurrentMonth: Array<Event> = []
-      for (const event of events) {
+    const eventCurrentMonth: Array<Event> = [];
+      for (const event of this.events) {
         const date = moment(event.DTSTART);
         if(date.month() == this.monthIndex){
           eventCurrentMonth.push(event);
         }
       }
       this.eventsThisMonth = eventCurrentMonth;
-    })
   }
 
 
@@ -82,5 +81,40 @@ export class CalenderComponent implements OnInit {
       return undefined;
     })
 
+  }
+
+
+  addEvent = (event: Event) => {
+    this.events.push(event);
+    this.eventsThisMonth.push(event);
+    this.eventsChanged.emit(this.events);
+  }
+
+  updateEvent = (event: Event) => {
+    const eventIndex = this.events.findIndex(x => x.UID === event.UID);
+    if(eventIndex === -1) {
+      console.log('update')
+      return;
+    }
+    this.events[eventIndex] === event;
+    const eventThisMonthIndex = this.eventsThisMonth.findIndex(x => x.UID === event.UID);
+    if(eventThisMonthIndex !== -1) {
+      this.eventsThisMonth[eventThisMonthIndex] = event;
+      this.eventsChanged.emit(this.events);
+    }
+  }
+
+  deleteEvent = (event: Event) => {
+    const eventIndex = this.events.findIndex(x => x.UID === event.UID);
+    if(eventIndex === -1) {
+      alert('event not found')
+      return;
+    }
+    this.events.splice(eventIndex, 1);
+    const eventThisMonthIndex = this.eventsThisMonth.findIndex(x => x.UID === event.UID);
+    if(eventThisMonthIndex !== -1) {
+      this.eventsThisMonth.splice(eventThisMonthIndex, 1);
+      this.eventsChanged.emit(this.events);
+    }
   }
 }
